@@ -1,5 +1,7 @@
 {
-  "current": "Default",
+  "current": {
+    "link_color": "#00DD00"
+  },
   "presets": {
     "Default": { }
   }

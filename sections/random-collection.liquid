@@ -1,0 +1,45 @@
+{%comment%}
+{% assign helloVar = 5 | plus: 10 %}
+{{ helloVar }}
+
+{{ "</br>Array: </br>" }}
+{% assign myArr = "Pao,Fazt,Lara,Paul,Lars,Tom " | split: "," %}
+
+<ul>
+{% for name in myArr %}
+  <li>{{ name }}</li>
+{% endfor %}
+</ul>
+{%endcomment%}
+
+{% assign collection = collections['learning'] %}
+{{ collection.title }}
+
+<ul>
+{% for el in collection.products %}
+    {% if section.settings.show_soldout == false and el.available == true %}
+        <li>
+            <a style="color: {{ settings.link_color }}" href="{{ el.url }}">
+            {{ el.title }} - {{el.price | money}} 
+            {% unless el.available %}
+                (SOLD OUT)
+            {% endunless %}
+            </a>
+        </li>
+    {% endif %}
+{% endfor %}
+</ul>
+
+{% schema %}
+    {
+        "name": "Section name",
+        "settings": [
+            {
+                "type": "checkbox",
+                "id": "show_soldout",
+                "label": "Show Sold Out Products",
+                "default": false
+            }
+        ]
+    }
+{% endschema %}
